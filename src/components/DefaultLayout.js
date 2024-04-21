@@ -11,7 +11,7 @@ function DefaultLayout(props) {
          
           href="/"
         >
-          Home
+          HOME
         </a>
       </Menu.Item>
       <Menu.Item>
@@ -19,7 +19,7 @@ function DefaultLayout(props) {
           
           href="/userbookings"
         >
-          Bookings
+          BOOKINGS
         </a>
       </Menu.Item>
       <Menu.Item>
@@ -27,14 +27,14 @@ function DefaultLayout(props) {
          
           href="/admin"
         >
-          Admin
+          ADD CAR
         </a>
       </Menu.Item>
       <Menu.Item onClick={()=>{
           localStorage.removeItem('user');
           window.location.href='/login'
       }}>
-          <li style={{color:'orangered'}}>Logout</li>
+          <li style={{color:'orangered'}}>LOGOUT</li>
       </Menu.Item>
     </Menu>
   );
@@ -44,7 +44,7 @@ function DefaultLayout(props) {
           <Row gutter={16} justify='center'>
               <Col lg={20} sm={24} xs={24}>
               <div className="d-flex justify-content-between">
-             <h1 ><b><Link to='/' style={{color:'orangered'}}>Cars</Link></b></h1>
+             <h1 ><b><Link to='/' style={{color:'orangered'}}>Car Take</Link></b></h1>
 
           <Dropdown overlay={menu} placement="bottomCenter">
             <Button>{user.username}</Button>

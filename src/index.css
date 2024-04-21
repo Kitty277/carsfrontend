@@ -146,3 +146,8 @@ svg{
 a{
   color: orangered !important;
 }
+#bg-container{
+  background-image: url("https://wallpapercave.com/wp/GBQcQYW.jpg");
+  background-size: cover;
+  height: 100vh;
+}

@@ -11,6 +11,7 @@ import AOS from 'aos';
 
 import 'aos/dist/aos.css'; // You can also use <link> for styles
 const { RangePicker } = DatePicker;
+
 function BookingCar({ match }) {
   const { cars } = useSelector((state) => state.carsReducer);
   const { loading } = useSelector((state) => state.alertsReducer);
@@ -24,10 +25,10 @@ function BookingCar({ match }) {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    if (cars.length == 0) {
+    if (cars.length === 0) {
       dispatch(getAllCars());
     } else {
-      setcar(cars.find((o) => o._id == match.params.carid));
+      setcar(cars.find((o) => o._id === match.params.carid));
     }
   }, [cars]);
 
@@ -44,8 +45,6 @@ function BookingCar({ match }) {
 
     setTotalHours(values[1].diff(values[0], "hours"));
   }
-
-  
 
   function onToken(token){
     const reqObj = {
@@ -65,115 +64,119 @@ function BookingCar({ match }) {
   }
 
   return (
-    <DefaultLayout>
-      {loading && <Spinner />}
-      <Row
-        justify="center"
-        className="d-flex align-items-center"
-        style={{ minHeight: "90vh" }}
-      >
-        <Col lg={10} sm={24} xs={24} className='p-3'>
-          <img src={car.image} className="carimg2 bs1 w-100" data-aos='flip-left' data-aos-duration='1500'/>
-        </Col>
+    <div style={{ backgroundColor: '#e6f7ff' }}>
+      <DefaultLayout>
+        {loading && <Spinner />}
+        <Row
+          justify="center"
+          className="d-flex align-items-center"
+          style={{ minHeight: "90vh" }}
+        >
+          <Col lg={10} sm={24} xs={24} className='p-3'>
+            <img src={car.image} className="carimg2 bs1 w-100" data-aos='flip-left' data-aos-duration='1500'/>
+          </Col>
 
-        <Col lg={10} sm={24} xs={24} className="text-right">
-          <Divider type="horizontal" dashed>
-            Car Info
-          </Divider>
-          <div style={{ textAlign: "right" }}>
-            <p>{car.name}</p>
-            <p>{car.rentPerHour} Rent Per hour /-</p>
-            <p>Fuel Type : {car.fuelType}</p>
-            <p>Max Persons : {car.capacity}</p>
-          </div>
-
-          <Divider type="horizontal" dashed>
-            Select Time Slots
-          </Divider>
-          <RangePicker
-            showTime={{ format: "HH:mm" }}
-            format="MMM DD yyyy HH:mm"
-            onChange={selectTimeSlots}
-          />
-          <br />
-          <button
-            className="btn1 mt-2"
-            onClick={() => {
-              setShowModal(true);
-            }}
-          >
-            See Booked Slots
-          </button>
-          {from && to && (
-            <div>
-              <p>
-                Total Hours : <b>{totalHours}</b>
-              </p>
-              <p>
-                Rent Per Hour : <b>{car.rentPerHour}</b>
-              </p>
-              <Checkbox
-                onChange={(e) => {
-                  if (e.target.checked) {
-                    setdriver(true);
-                  } else {
-                    setdriver(false);
-                  }
-                }}
-              >
-                Driver Required
-              </Checkbox>
-
-              <h3>Total Amount : {totalAmount}</h3>
-
-              <StripeCheckout
-                shippingAddress
-                token={onToken}
-                currency='inr'
-                amount={totalAmount * 100}
-                stripeKey="pk_test_51Ox0ZjSFnWOCKfVio7KUdUcFerayEGqJdfxvx9iEccgFylxz4LWr0X1ARBwffVAnEDFg7x2sfNNIBe2ZqTOKrNxS00q4xqsrQz"
-              >
-                  <button className="btn1">
-                Book Now
-              </button>
-              </StripeCheckout>
-
-              
+          <Col lg={10} sm={24} xs={24} className="text-right">
+            <Divider type="horizontal" dashed>
+              Car Info
+            </Divider>
+            <div style={{ textAlign: "right" }}>
+              <p>{car.name}</p>
+              <p>{car.rentPerHour} Rent Per hour /-</p>
+              <p>Fuel Type : {car.fuelType}</p>
+              <p>Max Persons : {car.capacity}</p>
+              <p>Mobile no : {car.Mobilenumber}</p>
+              <p>Location : {car.Location}</p>
             </div>
-          )}
-        </Col>
 
-        {car.name && (
-          <Modal
-            visible={showModal}
-            closable={false}
-            footer={false}
-            title="Booked time slots"
-          >
-            <div className="p-2">
-              {car.bookedTimeSlots.map((slot) => {
-                return (
-                  <button className="btn1 mt-2">
-                    {slot.from} - {slot.to}
-                  </button>
-                );
-              })}
-
-              <div className="text-right mt-5">
-                <button
-                  className="btn1"
-                  onClick={() => {
-                    setShowModal(false);
+            <Divider type="horizontal" dashed>
+              Select Time Slots
+            </Divider>
+            <RangePicker
+              showTime={{ format: "HH:mm" }}
+              format="MMM DD yyyy HH:mm"
+              onChange={selectTimeSlots}
+            />
+            <br />
+            <button
+              className="btn1 mt-2"
+              onClick={() => {
+                setShowModal(true);
+              }}
+            >
+              See Booked Slots
+            </button>
+            {from && to && (
+              <div>
+                <p>
+                  Total Hours : <b>{totalHours}</b>
+                </p>
+                <p>
+                  Rent Per Hour : <b>{car.rentPerHour}</b>
+                </p>
+                {/* <Checkbox
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      setdriver(true);
+                    } else {
+                      setdriver(false);
+                    }
                   }}
                 >
-                  CLOSE
+                  Driver Required
+                </Checkbox> */}
+
+                <h3>Total Amount : {totalAmount}</h3>
+
+                <StripeCheckout
+                  shippingAddress
+                  token={onToken}
+                  currency='inr'
+                  amount={totalAmount * 100}
+                  stripeKey="pk_test_51Ox0ZjSFnWOCKfVio7KUdUcFerayEGqJdfxvx9iEccgFylxz4LWr0X1ARBwffVAnEDFg7x2sfNNIBe2ZqTOKrNxS00q4xqsrQz"
+                >
+                    <button className="btn1">
+                  Book Now
                 </button>
+                </StripeCheckout>
+
+                
               </div>
-            </div>
-          </Modal>
-        )}
-      </Row>
-    </DefaultLayout>
+            )}
+          </Col>
+
+          {car.name && (
+            <Modal
+              visible={showModal}
+              closable={false}
+              footer={false}
+              title="Booked time slots"
+            >
+              <div className="p-2">
+                {car.bookedTimeSlots.map((slot) => {
+                  return (
+                    <button className="btn1 mt-2">
+                      {slot.from} - {slot.to}
+                    </button>
+                  );
+                })}
+
+                <div className="text-right mt-5">
+                  <button
+                    className="btn1"
+                    onClick={() => {
+                      setShowModal(false);
+                    }}
+                  >
+                    CLOSE
+                  </button>
+                </div>
+              </div>
+            </Modal>
+          )}
+        </Row>
+      </DefaultLayout>
+    </div>
   );
 }
 

@@ -64,6 +64,13 @@ function EditCar({ match }) {
                 <Input />
               </Form.Item>
               <Form.Item
+                name="Location"
+                label="add location"
+                rules={[{ required: true }]}
+              >
+                <Input />
+              </Form.Item>
+              <Form.Item
                 name="capacity"
                 label="Capacity"
                 rules={[{ required: true }]}
@@ -73,6 +80,13 @@ function EditCar({ match }) {
               <Form.Item
                 name="fuelType"
                 label="Fuel Type"
+                rules={[{ required: true }]}
+              >
+                <Input />
+              </Form.Item>
+              <Form.Item
+                name="Mobilenumber"
+                label="mobile.No"
                 rules={[{ required: true }]}
               >
                 <Input />

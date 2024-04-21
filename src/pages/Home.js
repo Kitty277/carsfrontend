@@ -67,7 +67,8 @@ function Home() {
 
     return (
         <DefaultLayout>
-
+            {/* <div id='bg-container'> */}
+            <div style={{ height: '100vh', backgroundColor: 'lightseagreen', backgroundImage: 'linear-gradient(to bottom right, rgb(54, 163, 199), rgb(236, 146, 161))' }}>
              <Row className='mt-3' justify='center'>
                  
                  <Col lg={20} sm={24} className='d-flex justify-content-left'>
@@ -91,9 +92,10 @@ function Home() {
 
                                <div className="car-content d-flex align-items-center justify-content-between">
 
-                                    <div className='text-left pl-2'>
+                                    <div className='text-white text-left pl-2'>
                                         <p>{car.name}</p>
                                         <p> Rent Per Hour {car.rentPerHour} /-</p>
+                                        <p>Location:{car.Location}</p>
                                     </div>
 
                                     <div>
@@ -106,9 +108,11 @@ function Home() {
                    })}
 
               </Row>
-
+            </div>
         </DefaultLayout>
     )
 }
 
 export default Home
+
+

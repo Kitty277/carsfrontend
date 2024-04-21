@@ -34,13 +34,16 @@ function AddCar() {
                            <Form.Item name='rentPerHour' label='Rent per hour' rules={[{required: true}]}>
                                <Input/>
                            </Form.Item>
+                           <Form.Item name='Location' label='Add location' rules={[{required: true}]}>
+                               <Input/>
+                           </Form.Item>
                            <Form.Item name='capacity' label='Capacity' rules={[{required: true}]}>
                                <Input/>
                            </Form.Item>
                            <Form.Item name='fuelType' label='Fuel Type' rules={[{required: true}]}>
                                <Input/>
                            </Form.Item>
-                           <Form.Item name='Mobile number' label='mobile.No' rules={[{required: true}]}>
+                           <Form.Item name='Mobilenumber' label='mobile.No' rules={[{required: true}]}>
                                <Input/>
                            </Form.Item>
 
