@@ -10,8 +10,10 @@ import UserBookings from './pages/UserBookings';
 import AddCar from './pages/AddCar';
 import AdminHome from './pages/AdminHome';
 import EditCar from './pages/EditCar';
+import axios from 'axios';
 
 function App() {
+  axios.defaults.baseURL = 'https://carsbackend-b7rx.onrender.com';
   return (
     <div className="App">
       <Router>
